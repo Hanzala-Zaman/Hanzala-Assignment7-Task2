@@ -1,0 +1,54 @@
+<h2 class="heading-1">All Nurses</h2> <h2 class="heading-2">Your Selected Nurse</h2>
+
+<div class="container">
+<div class="container_datails">
+    
+    <div *ngIf="nurseDetails">
+      <img src="/assets/doctor1.jpg" alt="Nurse Image" class="nurse-image">
+      <div class="detail-sc">
+      <p>ID: {{ nurseDetails.data.id }}</p>
+      <p>Name: {{ nurseDetails.data.name }}</p>
+      <p>Gender: {{ nurseDetails.data.gender }}</p>
+      <p>Job Title: {{ nurseDetails.data.job_title }}</p>
+    </div>
+    <button class="btn" (click)="showProfile = !showProfile">Show Profile</button>
+    
+    </div>
+</div>
+
+  
+  <div class="container_datails">
+    <div class="profile-details" *ngIf="showProfile">
+        <img src="/assets/doctor1.jpg" alt="Nurse Image" class="nurse-image">
+        <div class="detail-sc">
+        <p>ID: {{ nurseDetails.data.id }}</p>
+        <p>Name: {{ nurseDetails.data.name }}</p>
+        <p>Gender: {{ nurseDetails.data.gender }}</p>
+        <p>Job Title: {{ nurseDetails.data.job_title }}</p>
+        
+  </div>
+  <button class="btn" (click)="toggleScheduleModal(nurseDetails.data.id)">Show Schedule</button>
+</div>
+
+
+ 
+<div class="schedule-details" *ngIf="showSchedule && selectedNurseId !== null">
+  <h3>
+    &nbsp;<i class="fa-solid fa-calendar" style="color: #29a6a8;"></i>
+    &nbsp;Schedules
+    <button class="close-icon" (click)="closeScheduleModal()">✕</button>
+  </h3>
+  <ul>
+    <p *ngFor="let schedule of selectedNurseSchedule">
+      Start Time: {{ schedule.start_time }} - End Time: {{ schedule.end_time }}<br>
+      Status: &nbsp;{{ schedule.status }}
+    </p>
+  </ul>
+</div>
+
+<!-- <pre>{{ nurseDetails | json }}</pre> -->
+
+
+
+
+

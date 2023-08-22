@@ -1,0 +1,48 @@
+
+<div class="container">
+    <div class="container_datails">
+      <div *ngIf="nurseDetails">
+        <img src="/assets/doctor1.jpg" alt="Nurse Image" class="nurse-image">
+        <div class="detail-sc">
+          <p class="info-text">ID: {{ nurseDetails.data.id }}</p>
+          <p class="info-text">Name: {{ nurseDetails.data.name }}</p>
+          <p class="info-text">Gender: {{ nurseDetails.data.gender }}</p>
+          <p class="info-text">Job Title: {{ nurseDetails.data.job_title }}</p>
+        </div>
+      </div>
+
+      <p class="head-serv">Services:</p>
+      <div *ngIf="nurseDetails" class="services-det">
+        
+        <div *ngFor="let service of nurseDetails.data.services" class="service-item">
+            <li class="service">{{service.service.name_en}}</li>
+            </div>
+      </div>
+
+      <p>Hourly Rates</p>
+      <div *ngIf="nurseDetails" class="rate">
+            <p class="rate-item">{{nurseDetails.data.base_price}}</p>
+            
+    </div>
+    <button class="btn">Requests</button>
+  </div>
+</div>
+
+<div class="docs">
+<p><i class="fa-solid fa-file" style="color: #14b3c8;">&nbsp;</i>Documents</p>
+<p class="text-doc">No Documents Available</p>
+</div>
+
+<div class="schedule">
+    <p><i class="fa-solid fa-calendar" style="color: #29a6a8;"></i> &nbsp;Schedules</p>
+    <p *ngFor="let schedule of nurseDetails.data.schedules" class="schedule-text">
+        Start Time: {{ schedule.start_time }} - End Time: {{ schedule.end_time }}<br>
+        Status: &nbsp;{{schedule.status}}
+
+      </p>
+</div>
+
+<div class="reviews">
+    <p><i class="fa-solid fa-comment" style="color: #29a6a8;"></i> &nbsp;Client Reviews</p>
+    <p class="text-review">No Reviews</p>
+</div>
